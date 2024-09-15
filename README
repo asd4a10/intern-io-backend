@@ -1,0 +1,5 @@
+for development use:
+-> fastapi dev main.py
+
+for production use:
+-> fastapi run
