@@ -1,11 +1,23 @@
 from fastapi import FastAPI, HTTPException, Depends
+from starlette.middleware.sessions import SessionMiddleware
+import os
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
 # Import database setup and User model from database.py
 from database import User, get_db
 
+# import authentication router
+from auth.routes import auth_router
+
 app = FastAPI()
+
+# Add session middleware
+app.add_middleware(
+    SessionMiddleware, secret_key=os.getenv("SESSION_SECRET_KEY")  # Use a strong key
+)
+
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
 
 
 # Pydantic schema for user input
