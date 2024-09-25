@@ -21,6 +21,17 @@ class User(Base):
     name = Column(String)
 
 
+class Company(Base):
+    __tablename__ = "companies"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    link = Column(String)
+    img = Column(String)
+    category = Column(String)
+    description = Column(String)
+
+
 # Step 4: Create the table in the database (if it doesn't exist)
 Base.metadata.create_all(bind=engine)
 

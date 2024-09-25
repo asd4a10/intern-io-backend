@@ -9,6 +9,7 @@ from database import User, get_db
 
 # import authentication router
 from auth.routes import auth_router
+from company.company_service import company_router
 
 app = FastAPI()
 
@@ -18,6 +19,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
+app.include_router(company_router, prefix="/companies", tags=["company"])
 
 
 # Pydantic schema for user input
